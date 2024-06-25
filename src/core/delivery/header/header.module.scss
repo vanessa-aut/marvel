@@ -1,0 +1,16 @@
+.main-nav {
+  background: var(--c-secondary);
+  padding-block: 1rem;
+  padding-inline: 1rem;
+  color: var(--c-white);
+
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__logo {
+    width: 8.12rem;
+  }
+}

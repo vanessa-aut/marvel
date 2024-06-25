@@ -1,0 +1,50 @@
+.card {
+  &__info {
+    background: linear-gradient( var(--c-secondary), var(--c-secondary) 50%, var(--c-primary) 50%, var(--c-primary));
+    background-size: 100% 200%;
+    /*trasition effect for background*/
+    transition: background 1s;
+    color: var(--c-white);
+    font-weight: 400;
+    font-size: 0.87rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    border-block-start: 0.30rem solid var(--c-primary);
+    position: relative;
+
+    &:after {
+      content: "";
+      position: absolute;
+      display: block;
+      width: 0px;
+      height: 0px;
+      bottom: 0;
+      right: 0;
+      border-style: solid;
+      border-width: 0 0px 13px 13px;
+      border-color: transparent transparent #FFFFFF transparent;
+      transform: rotate(0deg);
+    }
+
+    .fav path {
+      fill: var(--c-primary);
+      transition: all 1s;
+    }
+
+    &:hover {
+      background-position: 100% -100%;
+
+      .fav path {
+        fill: var(--c-white);
+        transition: all 1s;
+      }
+    }
+
+  }
+
+  &__action {
+     border: none;
+     background-color: transparent;
+   }
+}

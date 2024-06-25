@@ -5,9 +5,15 @@ import { MarvelApiResponse } from '../../../core/http/marvel-api-response'
 import { CharacterDto } from './character.dto'
 import { CharacterDtoMapper } from './character-dto.mapper'
 import { ApiResponse } from '../../../core/http/api-response'
+import { CharactersApiQry } from '../../../core/http/characters-api-qry'
 
 export class CharactersHttpRepository implements CharactersRepository {
   static url = 'characters'
+
+  private defaultCharactersQry: CharactersApiQry = {
+    limit: 50,
+  }
+
   constructor(
     private readonly httpClient: HttpClient,
     private readonly characterDtoMapper: CharacterDtoMapper,
@@ -19,8 +25,11 @@ export class CharactersHttpRepository implements CharactersRepository {
     return this.characterDtoMapper.map(characterDto.data.data.results[0])
   }
 
-  async findAll(options: void): Promise<ApiResponse<Character>> {
-    const response = await this.httpClient.get<MarvelApiResponse<CharacterDto>>(CharactersHttpRepository.url)
+  async findAll(options: CharactersApiQry): Promise<ApiResponse<Character>> {
+    const queryOptions = { ...this.defaultCharactersQry, ...options }
+    const queryParams = new URLSearchParams(queryOptions as Record<string, string>).toString()
+    const url = `${CharactersHttpRepository.url}?${queryParams}`
+    const response = await this.httpClient.get<MarvelApiResponse<CharacterDto>>(url)
 
     return {
       total: response.data.data.total,

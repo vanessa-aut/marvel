@@ -2,7 +2,10 @@ import { FindableAll } from '../../../core/repositories/findable-all'
 import { Character } from './character'
 import { Findable } from '../../../core/repositories/findable'
 import { ApiResponse } from '../../../core/http/api-response'
+import { CharactersApiQry } from '../../../core/http/characters-api-qry'
 
-export interface CharactersRepository extends FindableAll<ApiResponse<Character>>, Findable<Character, number> {
+export interface CharactersRepository
+  extends FindableAll<ApiResponse<Character>, CharactersApiQry>,
+    Findable<Character, number> {
   // TODO:  findComicsByCharacterId
 }

@@ -13,7 +13,7 @@ export const CharacterComponent: FC<CharacterProps> = ({ character }) => {
       <a href={`/character/${character.id.value}`} className={styles['card__img-wrapper']}>
         <img className={styles.card__img} src={character.image} alt={`Image of ${character.name}`} />
       </a>
-      <FavoriteButtonComponent character={character.toPrimitives()} />
+      <FavoriteButtonComponent character={character} />
     </article>
   )
 }

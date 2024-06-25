@@ -1,17 +1,25 @@
-import { type FC } from 'react'
+'use client'
+
+import React, { type FC, useState } from 'react'
 import { SearchBoxComponent } from '../../../../core/delivery/search-box/search-box.component'
 import { CharactersList } from '../list/characters-list.component'
-import { getCharactersQry, useCaseService } from '../../../../core/service-locator/service-locator'
-import { CharactersApiQry } from '../../../../core/http/characters-api-qry'
+import { useSearch } from '../../hooks/use-search'
 
-export const CharactersPageComponent: FC = async () => {
-  const params: CharactersApiQry = {}
-  const characters = await useCaseService.execute(getCharactersQry, params)
+export const CharactersPageComponent: FC = () => {
+  const [searchValue, setSearchValue] = useState('')
+  const { characters, isSearching } = useSearch(searchValue)
+  const onChangeHandle = (event: React.ChangeEvent<HTMLInputElement>) => console.log(event.currentTarget.value)
 
   return (
     <>
-      <SearchBoxComponent />
-      <CharactersList characters={characters.results} />
+      {isSearching ? (
+        <h1>Loading</h1>
+      ) : (
+        <>
+          <SearchBoxComponent onChangeHandle={onChangeHandle} />
+          <CharactersList characters={characters.results} />
+        </>
+      )}
     </>
   )
 }

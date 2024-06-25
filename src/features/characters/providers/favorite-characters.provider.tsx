@@ -1,8 +1,7 @@
 'use client'
 
-import { type FC, ReactNode, useEffect, useState } from 'react'
+import { type FC, ReactNode, useState } from 'react'
 import { FavoriteCharactersContext } from './favorite-characters.context'
-import { useFavoriteCharacters } from '../hooks/use-favorite-characters'
 import { Character } from '../domain/character'
 
 interface Props {
@@ -13,7 +12,7 @@ export const FavoriteCharactersProvider: FC<Props> = ({ children }) => {
   const [favorites, setFavorites] = useState<Character[]>([])
 
   const isFavorite = (character: Character) => {
-    return favorites.some(fav => fav.id.isEqual(character.id))
+    return favorites.some(fav => fav.id === character.id)
   }
 
   const favoritesCounter = () => favorites.length
@@ -23,7 +22,7 @@ export const FavoriteCharactersProvider: FC<Props> = ({ children }) => {
   }
 
   const deleteFavorite = (character: Character) => {
-    const filteredFavs = favorites.filter(fav => !fav.id.isEqual(character.id))
+    const filteredFavs = favorites.filter(fav => fav.id !== character.id)
     setFavorites(filteredFavs)
   }
 

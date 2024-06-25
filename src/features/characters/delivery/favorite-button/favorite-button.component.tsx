@@ -2,25 +2,25 @@
 
 import { type FC } from 'react'
 import { useFavoriteCharacters } from '../../hooks/use-favorite-characters'
-import { Character, CharacterPrimitives } from '../../domain/character'
+import { Character } from '../../domain/character'
 import styles from './favorite-button.module.scss'
 
 interface FavoriteButtonProps {
-  character: CharacterPrimitives
+  character: Character
 }
 
 export const FavoriteButtonComponent: FC<FavoriteButtonProps> = ({ character }) => {
-  const { favoritesCounter, isFavorite, updateFavorites } = useFavoriteCharacters()
+  const { isFavorite, updateFavorites } = useFavoriteCharacters()
 
   const onClickHandle = () => {
-    updateFavorites(Character.create(character))
+    updateFavorites(character)
   }
 
   return (
     <div className={styles.card__info}>
       <h2>{character.name}</h2>
       <button className={styles.card__action} onClick={onClickHandle}>
-        {isFavorite(Character.create(character)) ? (
+        {isFavorite(character) ? (
           <svg
             className={styles.fav}
             width="15"

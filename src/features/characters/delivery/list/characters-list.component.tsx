@@ -1,7 +1,7 @@
 import { type FC } from 'react'
 import { CharacterComponent } from '../character/character.component'
 import styles from './characters-list.module.scss'
-import { Character } from '../../../domain/character'
+import { Character } from '../../domain/character'
 
 interface CharacterListProps {
   characters: Character[]

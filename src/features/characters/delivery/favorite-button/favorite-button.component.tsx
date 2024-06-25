@@ -1,8 +1,8 @@
 'use client'
 
 import { type FC } from 'react'
-import { useFavoriteCharacters } from '../../../hooks/use-favorite-characters'
-import { Character, CharacterPrimitives } from '../../../domain/character'
+import { useFavoriteCharacters } from '../../hooks/use-favorite-characters'
+import { Character, CharacterPrimitives } from '../../domain/character'
 import styles from './favorite-button.module.scss'
 
 interface FavoriteButtonProps {

@@ -9,12 +9,18 @@ interface CharacterListProps {
 
 export const CharactersList: FC<CharacterListProps> = ({ characters }) => {
   return (
-    <ul className={styles.characters__list}>
-      {characters.map(character => (
-        <li key={character.id.value}>
-          <CharacterComponent character={character} />
-        </li>
-      ))}
-    </ul>
+    <>
+      {characters.length > 0 ? (
+        <ul className={styles.characters__list}>
+          {characters.map(character => (
+            <li key={character.id.value}>
+              <CharacterComponent character={character} />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <h1>Ups, no results!</h1>
+      )}
+    </>
   )
 }

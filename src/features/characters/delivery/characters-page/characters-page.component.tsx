@@ -18,7 +18,7 @@ export const CharactersPageComponent: FC = () => {
         <h1>Loading</h1>
       ) : (
         <>
-          <SearchBoxComponent value={searchValue} onChangeHandle={onChangeHandle} />
+          <SearchBoxComponent value={searchValue} onChangeHandle={onChangeHandle} total={characters.total} />
           <CharactersList characters={characters.results} />
         </>
       )}

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { type FC, useState } from 'react'
+import React, { type FC } from 'react'
 import { Character, CharacterPrimitives } from '../../domain/character'
 import { FavoriteButtonComponent } from '../favorite-button/favorite-button.component'
 

@@ -7,7 +7,7 @@ interface PageProps {
   }
 }
 
-const CharacterPage = async ({ params }: PageProps) => {
+export default async function CharacterPage({ params }: PageProps) {
   const { id } = params
   const character = await useCaseService.execute(getCharacterByIdQry, id)
 
@@ -17,5 +17,3 @@ const CharacterPage = async ({ params }: PageProps) => {
     </div>
   )
 }
-
-export default CharacterPage

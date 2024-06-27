@@ -12,7 +12,7 @@ export const FavoriteCharactersProvider: FC<Props> = ({ children }) => {
   const [favorites, setFavorites] = useState<Character[]>([])
 
   const isFavorite = (character: Character) => {
-    return favorites.some(fav => fav.id === character.id)
+    return favorites.some(fav => fav.id.value === character.id.value)
   }
 
   const favoritesCounter = () => favorites.length

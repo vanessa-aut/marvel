@@ -3,11 +3,12 @@
 import { FC } from 'react'
 import styles from './favorite-link.module.scss'
 import { useFavoriteCharacters } from '../../../features/characters/hooks/use-favorite-characters'
+import Link from 'next/link'
 
 export const FavoriteLinkComponent: FC = () => {
   const { favoritesCounter } = useFavoriteCharacters()
   return (
-    <a href="#" className={styles.favorite}>
+    <Link href="/" className={styles.favorite}>
       <div>
         <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -19,6 +20,6 @@ export const FavoriteLinkComponent: FC = () => {
         </svg>
       </div>
       <div>{favoritesCounter()}</div>
-    </a>
+    </Link>
   )
 }

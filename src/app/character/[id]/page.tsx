@@ -1,4 +1,5 @@
 import { getCharacterByIdQry, useCaseService } from '../../../core/service-locator/service-locator'
+import { CharacterPageComponent } from '../../../features/characters/delivery/character-page/character-page.component'
 
 interface PageProps {
   params: {
@@ -10,10 +11,9 @@ const CharacterPage = async ({ params }: PageProps) => {
   const { id } = params
   const character = await useCaseService.execute(getCharacterByIdQry, id)
 
-  // TODO: aaaa
   return (
     <div>
-      <h1>{id}</h1>
+      <CharacterPageComponent character={character.toPrimitives()} />
     </div>
   )
 }

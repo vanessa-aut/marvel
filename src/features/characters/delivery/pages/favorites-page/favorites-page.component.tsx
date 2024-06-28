@@ -6,6 +6,7 @@ import { CharactersList } from '../../components/character-list/characters-list.
 import useDebounce from '../../../hooks/use-debounce'
 import { useCharacterSearch } from '../../../hooks/use-character-search'
 import styles from './favorites-page.module.scss'
+import { LoadingComponent } from '../../../../../core/delivery/loading/loading.component'
 
 export const FavoritesPageComponent: FC = () => {
   const [searchValue, setSearchValue] = useState('')
@@ -16,14 +17,8 @@ export const FavoritesPageComponent: FC = () => {
   return (
     <div className="main-page">
       <h1 className={styles.title}>Favorites</h1>
-      {isSearching ? (
-        <h2>Loading</h2>
-      ) : (
-        <>
-          <SearchBoxComponent value={searchValue} onChangeHandle={onChangeHandle} total={characters.total} />
-          <CharactersList characters={characters.results} />
-        </>
-      )}
+      <SearchBoxComponent value={searchValue} onChangeHandle={onChangeHandle} total={characters.total} />
+      <CharactersList characters={characters.results} />
     </div>
   )
 }

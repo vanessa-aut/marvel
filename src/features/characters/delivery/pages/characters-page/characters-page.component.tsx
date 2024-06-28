@@ -5,6 +5,7 @@ import { SearchBoxComponent } from '../../../../../core/delivery/search-box/sear
 import { CharactersList } from '../../components/character-list/characters-list.component'
 import { useCharacterSearch } from '../../../hooks/use-character-search'
 import useDebounce from '../../../hooks/use-debounce'
+import { LoadingComponent } from '../../../../../core/delivery/loading/loading.component'
 
 export const CharactersPageComponent: FC = () => {
   const [searchValue, setSearchValue] = useState('')
@@ -13,15 +14,15 @@ export const CharactersPageComponent: FC = () => {
   const onChangeHandle = (event: React.ChangeEvent<HTMLInputElement>) => setSearchValue(event.currentTarget.value)
 
   return (
-    <div className="main-page">
+    <>
       {isSearching ? (
-        <h1>Loading</h1>
+        <LoadingComponent />
       ) : (
-        <>
+        <div className="main-page">
           <SearchBoxComponent value={searchValue} onChangeHandle={onChangeHandle} total={characters.total} />
           <CharactersList characters={characters.results} />
-        </>
+        </div>
       )}
-    </div>
+    </>
   )
 }

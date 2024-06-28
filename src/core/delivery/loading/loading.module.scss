@@ -1,0 +1,29 @@
+.progress-bar {
+  height: 0.25rem;
+  background: var(--c-secondary);
+  width: 100%;
+  background-color: var(--c-primary);
+  animation: progressAnimation 9s;
+
+  &__bar {
+    transition: 0.4s linear;
+    transition-property: width, background-color;
+    background: var(--c-secondary);
+  }
+}
+
+
+@keyframes progressAnimation {
+  0% {
+    width: 5%;
+  }
+  2% {
+    width: 6%;
+  }
+  15% {
+    width: 60%;
+  }
+  100% {
+    width: 100%;
+  }
+}

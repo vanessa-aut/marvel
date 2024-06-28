@@ -1,4 +1,4 @@
-import React, { type FC } from 'react'
+import { type FC } from 'react'
 import styles from './comic-carousel-item.module.scss'
 
 export const ComicCarouselItemComponent: FC = ({}) => {

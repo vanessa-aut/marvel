@@ -1,4 +1,4 @@
-import React, { type FC } from 'react'
+import { type FC } from 'react'
 import styles from './comic-carousel.module.scss'
 import { ComicCarouselItemComponent } from '../comic-carousel-item/comic-carousel-item.component'
 

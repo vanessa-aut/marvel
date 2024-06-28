@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import { Character } from '../../domain/character'
+import { Character } from '../../../domain/character'
 import { CharactersList } from './characters-list.component'
 
 const mockCharacters = {

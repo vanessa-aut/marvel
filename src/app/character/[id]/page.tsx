@@ -1,5 +1,5 @@
 import { getCharacterByIdQry, useCaseService } from '../../../core/service-locator/service-locator'
-import { CharacterPageComponent } from '../../../features/characters/delivery/character-page/character-page.component'
+import { CharacterPageComponent } from '../../../features/characters/delivery/pages/character-page/character-page.component'
 
 interface PageProps {
   params: {

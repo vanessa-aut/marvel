@@ -1,12 +1,12 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 import { FavoritesPageComponent } from './favorites-page.component'
-import { useCharacterSearch } from '../../hooks/use-character-search'
-import useDebounce from '../../hooks/use-debounce'
-import { Character } from '../../domain/character'
+import { useCharacterSearch } from '../../../hooks/use-character-search'
+import useDebounce from '../../../hooks/use-debounce'
+import { Character } from '../../../domain/character'
 
-jest.mock('../../hooks/use-character-search')
-jest.mock('../../hooks/use-debounce')
+jest.mock('../../../hooks/use-character-search')
+jest.mock('../../../hooks/use-debounce')
 const mockUseCharacterSearch = useCharacterSearch as jest.MockedFunction<typeof useCharacterSearch>
 const mockUseDebounce = useDebounce as jest.MockedFunction<typeof useDebounce>
 const mockCharacters = {

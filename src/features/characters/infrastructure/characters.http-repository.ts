@@ -6,6 +6,9 @@ import { CharacterDto } from './character.dto'
 import { CharacterDtoMapper } from './character-dto.mapper'
 import { ApiResponse } from '../../../core/http/api-response'
 import { CharactersApiQry } from '../../../core/http/characters-api-qry'
+import { ComicDtoMapper } from './comic-dto.mapper'
+import { Comic } from '../domain/comic'
+import { ComicDto } from './comic.dto'
 
 export class CharactersHttpRepository implements CharactersRepository {
   static url = 'characters'
@@ -14,9 +17,14 @@ export class CharactersHttpRepository implements CharactersRepository {
     limit: 50,
   }
 
+  private defaultComicsQry: CharactersApiQry = {
+    limit: 20,
+  }
+
   constructor(
     private readonly httpClient: HttpClient,
     private readonly characterDtoMapper: CharacterDtoMapper,
+    private readonly comicDtoMapper: ComicDtoMapper,
   ) {}
 
   async find(id: number): Promise<Character> {
@@ -34,6 +42,18 @@ export class CharactersHttpRepository implements CharactersRepository {
     return {
       total: response.data.data.total,
       results: response.data.data.results.map(this.characterDtoMapper.map),
+    }
+  }
+
+  async findComicsByCharacterId(id: number): Promise<ApiResponse<Comic>> {
+    const queryOptions = { ...this.defaultComicsQry }
+    const queryParams = new URLSearchParams(queryOptions as Record<string, string>).toString()
+    const comicsByCharacterIdUrl = `${CharactersHttpRepository.url}/${id}/comics?${queryParams}`
+    const response = await this.httpClient.get<MarvelApiResponse<ComicDto>>(comicsByCharacterIdUrl)
+
+    return {
+      total: response.data.data.total,
+      results: response.data.data.results.map(this.comicDtoMapper.map),
     }
   }
 }

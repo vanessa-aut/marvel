@@ -10,6 +10,8 @@ import { LogMiddleware } from '../use-case/middlewares/log.middleware'
 import { EmptyMiddleware } from '../use-case/middlewares/empty.middleware'
 import { AuthorizationInterceptor } from '../http/interceptors/authorization.interceptor'
 import { GetCharacterByIdQry } from '../../features/characters/application/get-character-by-id.qry'
+import { GetComicsByCharacterIdQry } from '../../features/characters/application/get-comics-by-character-id.qry'
+import { ComicDtoMapper } from '../../features/characters/infrastructure/comic-dto.mapper'
 
 const environment = {
   mode: process.env.NODE_ENV as Mode,
@@ -20,9 +22,14 @@ const environment = {
 const httpClient = new HttpClient(environment)
 new AuthorizationInterceptor(httpClient, environment).initInterceptor()
 
-const charactersHttpRepository = new CharactersHttpRepository(httpClient, new CharacterDtoMapper())
+const charactersHttpRepository = new CharactersHttpRepository(
+  httpClient,
+  new CharacterDtoMapper(),
+  new ComicDtoMapper(),
+)
 export const getCharactersQry = new GetCharactersQry(charactersHttpRepository)
 export const getCharacterByIdQry = new GetCharacterByIdQry(charactersHttpRepository)
+export const getComicsByCharacterIdQry = new GetComicsByCharacterIdQry(charactersHttpRepository)
 export const emptyMiddleware = new EmptyMiddleware()
 export const useCaseService = new UseCaseService([
   new ErrorMiddleware(new EventEmitter()),

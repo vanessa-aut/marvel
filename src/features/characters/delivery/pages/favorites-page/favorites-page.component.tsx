@@ -14,7 +14,7 @@ export const FavoritesPageComponent: FC = () => {
   const onChangeHandle = (event: React.ChangeEvent<HTMLInputElement>) => setSearchValue(event.currentTarget.value)
 
   return (
-    <>
+    <div className="main-page">
       <h1 className={styles.title}>Favorites</h1>
       {isSearching ? (
         <h2>Loading</h2>
@@ -24,6 +24,6 @@ export const FavoritesPageComponent: FC = () => {
           <CharactersList characters={characters.results} />
         </>
       )}
-    </>
+    </div>
   )
 }

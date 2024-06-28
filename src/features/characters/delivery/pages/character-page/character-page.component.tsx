@@ -1,8 +1,7 @@
-'use client'
-
 import React, { type FC } from 'react'
-import { Character, CharacterPrimitives } from '../../../domain/character'
-import { CardInfoButtonComponent } from '../../components/card-info-button/card-info-button.component'
+import { CharacterPrimitives } from '../../../domain/character'
+import { CharacterDetailHeaderComponent } from '../../components/character-detail-header/character-detail-header.component'
+import { ComicCarouselComponent } from '../../components/comic-carousel/comic-carousel.component'
 
 interface CharacterPageProps {
   character: CharacterPrimitives
@@ -11,8 +10,8 @@ interface CharacterPageProps {
 export const CharacterPageComponent: FC<CharacterPageProps> = ({ character }) => {
   return (
     <>
-      {character.name}
-      <CardInfoButtonComponent character={Character.create(character)} />
+      <CharacterDetailHeaderComponent character={character} />
+      <ComicCarouselComponent />
     </>
   )
 }

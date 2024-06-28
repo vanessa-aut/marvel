@@ -13,7 +13,7 @@ export const CharactersPageComponent: FC = () => {
   const onChangeHandle = (event: React.ChangeEvent<HTMLInputElement>) => setSearchValue(event.currentTarget.value)
 
   return (
-    <>
+    <div className="main-page">
       {isSearching ? (
         <h1>Loading</h1>
       ) : (
@@ -22,6 +22,6 @@ export const CharactersPageComponent: FC = () => {
           <CharactersList characters={characters.results} />
         </>
       )}
-    </>
+    </div>
   )
 }

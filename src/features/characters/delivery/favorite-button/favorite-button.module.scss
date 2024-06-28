@@ -1,4 +1,11 @@
 .card {
+  &__name {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   &__info {
     background: linear-gradient( var(--c-secondary), var(--c-secondary) 50%, var(--c-primary) 50%, var(--c-primary));
     background-size: 100% 200%;

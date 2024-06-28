@@ -18,7 +18,7 @@ export const FavoriteButtonComponent: FC<FavoriteButtonProps> = ({ character }) 
 
   return (
     <div className={styles.card__info}>
-      <h2>{character.name}</h2>
+      <h2 className={styles.card__name}>{character.name}</h2>
       <button className={styles.card__action} onClick={onClickHandle}>
         {isFavorite(character) ? (
           <svg

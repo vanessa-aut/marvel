@@ -3,13 +3,13 @@
 import { type FC } from 'react'
 import { useFavoriteCharacters } from '../../../hooks/use-favorite-characters'
 import { Character } from '../../../domain/character'
-import styles from './card-info-button.module.scss'
+import styles from './character-list-card-info-button.module.scss'
 
 interface FavoriteButtonProps {
   character: Character
 }
 
-export const CardInfoButtonComponent: FC<FavoriteButtonProps> = ({ character }) => {
+export const CharacterListCardInfoButtonComponent: FC<FavoriteButtonProps> = ({ character }) => {
   const { isFavorite, updateFavorites } = useFavoriteCharacters()
 
   const onClickHandle = () => {

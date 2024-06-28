@@ -22,7 +22,7 @@ export const FavoriteCharactersProvider: FC<Props> = ({ children }) => {
   }
 
   const deleteFavorite = (character: Character) => {
-    const filteredFavs = favorites.filter(fav => fav.id !== character.id)
+    const filteredFavs = favorites.filter(fav => fav.id.value !== character.id.value)
     setFavorites(filteredFavs)
   }
 

@@ -13,7 +13,7 @@ export default async function CharacterPage({ params }: PageProps) {
 
   return (
     <div>
-      <CharacterPageComponent character={character.toPrimitives()} />
+      <CharacterPageComponent character={character} />
     </div>
   )
 }

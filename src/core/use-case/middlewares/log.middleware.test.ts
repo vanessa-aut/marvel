@@ -1,45 +1,82 @@
-import { LogMiddleware } from './log.middleware'
-import { capture, instance, mock } from '@typestrong/ts-mockito'
 import { Logger } from '../../logger/logger'
 import { UseCase } from '../use-case'
 import { UseCaseHandler } from '../use-case-handler'
+import { LogMiddleware } from './log.middleware'
+
+class MockLogger implements Logger {
+  log = jest.fn()
+}
+class MockUseCase implements UseCase {
+  handle = jest.fn().mockResolvedValue('result')
+}
+const mockUseCaseHandler = {
+  useCase: new MockUseCase(),
+  handle: jest.fn().mockResolvedValue('result'),
+  middleware: [],
+  options: {},
+  constructor: { name: 'UseCaseHandler' },
+} as unknown as UseCaseHandler
 
 describe('LogMiddleware', () => {
-  it('should log information from an use case', async () => {
-    const { logMiddleware, logger, useCase } = setup()
+  it('should call logger.log and useCase.handle with params', async () => {
+    const mockLogger = new MockLogger()
+    const mockUseCase = new MockUseCase()
+    const middleware = new LogMiddleware(mockLogger)
+    const params = { test: 'test' }
+    const date = new Date().toISOString()
 
-    await logMiddleware.intercept(1, useCase)
-
-    const [actual] = capture(logger.log).last()
-    expect(actual).toEqual(`[2023-03-31T12:34:56.000Z] TestUseCase / 1`)
-  })
-
-  it('should log information from an use case handler', async () => {
-    const { logMiddleware, logger, useCase } = setup()
-
-    await logMiddleware.intercept(
-      1,
-      UseCaseHandler.create({ next: useCase, options: { silentError: false }, middleware: logMiddleware }),
+    jest.spyOn(global, 'Date').mockImplementation(
+      () =>
+        ({
+          toISOString: () => date,
+        }) as unknown as Date,
     )
 
-    const [actual] = capture(logger.log).last()
-    expect(actual).toEqual(`[2023-03-31T12:34:56.000Z] TestUseCase / 1`)
+    await middleware.intercept(params, mockUseCase)
+
+    expect(mockLogger.log).toHaveBeenCalledWith(`[${date}] MockUseCase / ${JSON.stringify(params, null, 2)}`)
+    expect(mockUseCase.handle).toHaveBeenCalledWith(params)
+  })
+
+  it('should get the correct name for UseCaseHandler', async () => {
+    const mockLogger = new MockLogger()
+    const middleware = new LogMiddleware(mockLogger)
+    const params = { test: 'test' }
+    const date = new Date().toISOString()
+
+    jest.spyOn(global, 'Date').mockImplementation(
+      () =>
+        ({
+          toISOString: () => date,
+        }) as unknown as Date,
+    )
+
+    await middleware.intercept(params, mockUseCaseHandler)
+
+    expect(mockLogger.log).toHaveBeenCalledWith(`[${date}] UseCaseHandler / ${JSON.stringify(params, null, 2)}`)
+    expect(mockUseCaseHandler.handle).toHaveBeenCalledWith(params)
+  })
+
+  it('should get the correct name for a generic UseCase', async () => {
+    const mockLogger = new MockLogger()
+    const genericUseCase = {
+      handle: jest.fn().mockResolvedValue('result'),
+      constructor: { name: 'GenericUseCase' },
+    } as UseCase
+    const middleware = new LogMiddleware(mockLogger)
+    const params = { test: 'test' }
+    const date = new Date().toISOString()
+
+    jest.spyOn(global, 'Date').mockImplementation(
+      () =>
+        ({
+          toISOString: () => date,
+        }) as unknown as Date,
+    )
+
+    await middleware.intercept(params, genericUseCase)
+
+    expect(mockLogger.log).toHaveBeenCalledWith(`[${date}] GenericUseCase / ${JSON.stringify(params, null, 2)}`)
+    expect(genericUseCase.handle).toHaveBeenCalledWith(params)
   })
 })
-
-function setup() {
-  const logger = mock<Logger>()
-  const logMiddleware = new LogMiddleware(instance(logger))
-
-  class TestUseCase implements UseCase {
-    async handle(): Promise<unknown> {
-      return
-    }
-  }
-
-  return {
-    logger,
-    logMiddleware,
-    useCase: new TestUseCase(),
-  }
-}

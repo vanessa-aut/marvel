@@ -25,6 +25,6 @@ export class UseCaseService {
       next = UseCaseHandler.create({ next: previous, middleware: currentMiddleware, options: requiredOptions })
     }
 
-    return next.handle(param) as Promise<Out>
+    return (await next.handle(param)) as Promise<Out>
   }
 }

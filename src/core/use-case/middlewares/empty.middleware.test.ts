@@ -1,14 +1,19 @@
 import { EmptyMiddleware } from './empty.middleware'
 import { UseCase } from '../use-case'
-import { mock } from 'jest-mock-extended'
+
+class MockUseCase implements UseCase {
+  handle = jest.fn((params: unknown) => Promise.resolve(params))
+}
 
 describe('EmptyMiddleware', () => {
-  it('should do nothing', () => {
+  it('should call next.handle with the same parameters', async () => {
     const emptyMiddleware = new EmptyMiddleware()
-    const next = mock<UseCase>()
+    const mockUseCase = new MockUseCase()
+    const params = { test: 'test' }
 
-    emptyMiddleware.intercept(1, next)
+    const result = await emptyMiddleware.intercept(params, mockUseCase)
 
-    expect(next.handle).toHaveBeenCalledWith(1)
+    expect(mockUseCase.handle).toHaveBeenCalledWith(params)
+    expect(result).toBe(params)
   })
 })

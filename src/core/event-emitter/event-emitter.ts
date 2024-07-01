@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type EventHandler = (data: any) => void
 
 export class EventEmitter {
@@ -18,7 +17,6 @@ export class EventEmitter {
     this.eventListeners[eventName] = this.eventListeners[eventName].filter(h => h !== handler)
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   dispatch(eventName: string, data: any): void {
     const handlers = this.eventListeners[eventName]
     if (!handlers) {

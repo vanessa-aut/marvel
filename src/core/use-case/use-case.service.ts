@@ -13,7 +13,6 @@ export class UseCaseService {
     }
 
     let next = UseCaseHandler.create({
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       next: useCase as any,
       options: requiredOptions,
       middleware: emptyMiddleware,

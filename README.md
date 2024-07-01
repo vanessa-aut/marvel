@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Marvel
 
-## Getting Started
+<!-- TOC start -->
 
-First, run the development server:
+- [Marvel](#marvel)
+  - [Development server](#development-server)
+    - [1 - Install dependencies](#1-install-dependencies)
+    - [2 - Start the application](#2-start-the-application)
+    - [3 - Navigate](#3-navigate)
+  - [Build](#build)
+  - [Running unit tests](#running-unit-tests)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+<!-- TOC end -->
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<!-- TOC --><a name="marvel"></a>
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Marvel
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+<!-- TOC --><a name="development-server"></a>
 
-## Learn More
+## Development server
 
-To learn more about Next.js, take a look at the following resources:
+<!-- TOC --><a name="1-install-dependencies"></a>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 1 - Install dependencies
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Run `npm install`
 
-## Deploy on Vercel
+<!-- TOC --><a name="2-start-the-application"></a>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 2 - Start the application
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Run `npm run dev` for a dev server.
+
+The application will automatically reload if you change any of the source files.
+
+<!-- TOC --><a name="3-navigate"></a>
+
+### 3 - Navigate
+
+`http://localhost:4200/`
+
+<!-- TOC --><a name="build"></a>
+
+## Build
+
+Run `npm run build` to build the project.
+
+The build artifacts will be stored in the `dist/` directory.
+
+<!-- TOC --><a name="running-unit-tests"></a>
+
+## Running unit tests
+
+Run `npm run test` to execute the unit tests.

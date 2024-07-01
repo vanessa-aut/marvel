@@ -13,6 +13,7 @@
   - [3 - Navigate](#3---navigate)
 - [Build](#build)
 - [Running unit tests](#running-unit-tests)
+- [Production](#production)
 
 ## Requirements
 
@@ -58,3 +59,7 @@ The build artifacts will be stored in the `dist/` directory.
 Run `npm run test` to execute the unit tests.
 
 `http://localhost:4200/`
+
+## Production
+
+Visit [the deployed version in Vercel](https://marvel-eight-eta.vercel.app/)

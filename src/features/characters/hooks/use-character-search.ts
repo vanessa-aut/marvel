@@ -42,5 +42,11 @@ export const useCharacterSearch = (searchParam: string, isFavs: boolean = false)
     onSearch()
   }, [searchParam])
 
+  useEffect(() => {
+    if (isFavs) {
+      onSearch()
+    }
+  }, [favorites])
+
   return { characters, isSearching }
 }

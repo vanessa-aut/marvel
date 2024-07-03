@@ -2,7 +2,7 @@ import { UseCase } from './use-case'
 import { Middleware } from './middlewares/middleware'
 import { UseCaseHandler } from './use-case-handler'
 import { UseCaseOptions } from './use-case-options'
-import { emptyMiddleware } from '../service-locator/service-locator'
+import { EmptyMiddleware } from '../use-case/middlewares/empty.middleware'
 
 export class UseCaseService {
   constructor(private readonly middlewares: Middleware[]) {}
@@ -15,7 +15,7 @@ export class UseCaseService {
     let next = UseCaseHandler.create({
       next: useCase as any,
       options: requiredOptions,
-      middleware: emptyMiddleware,
+      middleware: new EmptyMiddleware(),
     })
 
     for (let i = this.middlewares.length - 1; i >= 0; i--) {

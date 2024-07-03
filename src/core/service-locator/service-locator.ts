@@ -7,7 +7,6 @@ import { UseCaseService } from '../use-case/use-case.service'
 import { ErrorMiddleware } from '../use-case/middlewares/error.middleware'
 import { EventEmitter } from '../event-emitter/event-emitter'
 import { LogMiddleware } from '../use-case/middlewares/log.middleware'
-import { EmptyMiddleware } from '../use-case/middlewares/empty.middleware'
 import { AuthorizationInterceptor } from '../http/interceptors/authorization.interceptor'
 import { GetCharacterByIdQry } from '../../features/characters/application/get-character-by-id.qry'
 import { GetComicsByCharacterIdQry } from '../../features/characters/application/get-comics-by-character-id.qry'
@@ -30,9 +29,4 @@ const charactersHttpRepository = new CharactersHttpRepository(
 export const getCharactersQry = new GetCharactersQry(charactersHttpRepository)
 export const getCharacterByIdQry = new GetCharacterByIdQry(charactersHttpRepository)
 export const getComicsByCharacterIdQry = new GetComicsByCharacterIdQry(charactersHttpRepository)
-export const emptyMiddleware = new EmptyMiddleware()
-export const useCaseService = new UseCaseService([
-  new ErrorMiddleware(new EventEmitter()),
-  new LogMiddleware(console),
-  emptyMiddleware,
-])
+export const useCaseService = new UseCaseService([new ErrorMiddleware(new EventEmitter()), new LogMiddleware(console)])

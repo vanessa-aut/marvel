@@ -19,7 +19,7 @@ export const CharactersList: FC<CharacterListProps> = ({ characters }) => {
           ))}
         </ul>
       ) : (
-        <h1>Ups, no results!</h1>
+        <h1>Ups, no characters!</h1>
       )}
     </>
   )

@@ -6,12 +6,11 @@ import { CharactersList } from '../../components/character-list/characters-list.
 import useDebounce from '../../../hooks/use-debounce'
 import { useCharacterSearch } from '../../../hooks/use-character-search'
 import styles from './favorites-page.module.scss'
-import { LoadingComponent } from '../../../../../core/delivery/loading/loading.component'
 
 export const FavoritesPageComponent: FC = () => {
   const [searchValue, setSearchValue] = useState('')
   const debouncedSearchValue = useDebounce(searchValue, 500)
-  const { characters, isSearching } = useCharacterSearch(debouncedSearchValue, true)
+  const { characters } = useCharacterSearch(debouncedSearchValue, true)
   const onChangeHandle = (event: React.ChangeEvent<HTMLInputElement>) => setSearchValue(event.currentTarget.value)
 
   return (

@@ -13,6 +13,8 @@
   - [3 - Navigate](#3---navigate)
 - [Build](#build)
 - [Running unit tests](#running-unit-tests)
+- [Running e2e tests](#running-e2e-tests)
+- [Running e2e UI testing suite](#running-e2e-ui-testing-suite)
 - [Production](#production)
 
 ## Requirements

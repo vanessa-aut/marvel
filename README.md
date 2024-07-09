@@ -58,7 +58,13 @@ The build artifacts will be stored in the `dist/` directory.
 
 Run `npm run test` to execute the unit tests.
 
-`http://localhost:4200/`
+## Running e2e tests
+
+Run `npm run test:e2e` to execute the e2e tests.
+
+## Running e2e UI testing suite
+
+Run `npm run test:e2e:ui` to execute the UI testing suite.
 
 ## Production
 

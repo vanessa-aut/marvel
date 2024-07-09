@@ -24,7 +24,7 @@ const mockCharacters = {
 describe('CharactersList', () => {
   it('should show a message when there is no characters', () => {
     render(<CharactersList characters={[]} />)
-    expect(screen.getByText('Ups, no results!')).toBeInTheDocument()
+    expect(screen.getByText('Ups, no characters!')).toBeInTheDocument()
   })
 
   it('should render the characters list', () => {

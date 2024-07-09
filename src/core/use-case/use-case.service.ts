@@ -2,7 +2,7 @@ import { UseCase } from './use-case'
 import { Middleware } from './middlewares/middleware'
 import { UseCaseHandler } from './use-case-handler'
 import { UseCaseOptions } from './use-case-options'
-import { EmptyMiddleware } from '../use-case/middlewares/empty.middleware'
+import { EmptyMiddleware } from './middlewares/empty.middleware'
 
 export class UseCaseService {
   constructor(private readonly middlewares: Middleware[]) {}

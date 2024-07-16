@@ -14,7 +14,6 @@
 - [Build](#build)
 - [Running unit tests](#running-unit-tests)
 - [Running e2e tests](#running-e2e-tests)
-- [Running e2e UI testing suite](#running-e2e-ui-testing-suite)
 - [Production](#production)
 
 ## Requirements
@@ -62,11 +61,14 @@ Run `npm run test` to execute the unit tests.
 
 ## Running e2e tests
 
-Run `npm run test:e2e` to execute the e2e tests.
+## Running e2e tests
 
-## Running e2e UI testing suite
+You'll need install browsers before running e2e tests `npx playwright install`
 
-Run `npm run test:e2e:ui` to execute the UI testing suite.
+Start the application `npm run dev` and then:
+
+- Run `npm run test:e2e` to execute the e2e tests.
+- Run `npm run test:e2e:ui` to execute the UI testing suite.
 
 ## Production
 
